@@ -3,9 +3,14 @@
     <v-wrapper>
       <v-row>
         <v-col>
-          <v-card>
-            <v-card-title class="headline" app>生徒管理</v-card-title>
-          </v-card>
+          <v-content>
+            <v-icon>
+              mdi-vuetify
+            </v-icon>
+            <h1 class="ml-5">生徒管理</h1>
+            
+            <v-divider color="blue"/>
+          </v-content>
         </v-col>
       </v-row>
     </v-wrapper>
