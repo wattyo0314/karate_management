@@ -52,8 +52,7 @@ export default {
       rightDrawer: false,
       title: 'Vuetify.js',
       navlists: [
-        {name: '生徒管理',icon: 'mdi-vuetify'},
-        {name: 'Customization',icon: 'mdi-cogs'},
+        {name: '生徒管理',icon: 'mdi-account'},
       ]
     }
   }

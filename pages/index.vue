@@ -3,8 +3,8 @@
     <v-main>
       <v-container>
         <v-row>
-          <v-col cols="12">
-            <v-layout justify-center>
+          <v-col>
+            <v-row justify="center">
               <v-icon class="ml-5">
                 mdi-account
               </v-icon>
@@ -15,20 +15,20 @@
                 mdi mdi-account-plus
               </v-icon>
               </v-btn>
-            </v-layout>
+            </v-row>
             <v-divider color="blue"/>
           </v-col>
         </v-row>
-        <v-row>
-          <v-layout justify-center>
+          <v-row justify="center">
             <v-col cols="10">
               <v-data-table :headers="headers" dense :items="students">
                 <template v-slot:body="{items: students}">
                   <tbody>
-                    <tr v-for="student of students" :key="student.id">
-                      <td>{{student.familyName}} {{student.firstName}}</td>
+                    <tr v-for="(student, index) in students" :key="student.id">
+                      <td  @click="detailData(index)">{{student.familyName}} {{student.firstName}}</td>
                       <td>{{student.familyNameKana}} {{student.firstNameKana}}</td>
-                      <td><v-select
+                      <td>
+                        <v-select
                         v-model="initial"
                         :items="level"
                         menu-props="auto"
@@ -36,14 +36,15 @@
                         hide-details
                         single-line
                         style="width:150px;">
-                        </v-select></td>
+                        </v-select>
+                      </td>
+                      <td><v-icon @click="deleteData(index, student.familyName)">mdi-delete</v-icon></td>
                     </tr>
                   </tbody>
                 </template>
               </v-data-table>
             </v-col>
-          </v-layout>
-        </v-row>
+          </v-row>
       </v-container>
     </v-main>
   </v-app>
@@ -51,9 +52,10 @@
 
 <script>
 import { db } from '~/plugins/firebase.js'
-import { mapGetters } from 'vuex'
+import { mapGetters,  mapActions } from 'vuex'
 
 export default {
+  
   data() {
     return {
       headers: [
@@ -72,6 +74,11 @@ export default {
         {
           text: '年齢',
           value: 'age'
+        },
+        {
+          text: '削除',
+          value: 'delete',
+          sortable: false,
         }
       ],
           familyName:'',
