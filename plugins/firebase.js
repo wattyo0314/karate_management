@@ -1,11 +1,7 @@
-import firebase from 'firebase'
+import firebase from "firebase/app"
+import 'firebase/firestore'
+const serviceAccount = require('~/serviceAccountKey.json')
 
-const config = {
-  projectId: process.env.FIREBASE_PROJECT_ID
-}
-
-if(!firebase.apps.length) {
-  firebase.initializeApp(config)
-}
-
-export default firebase
+firebase.initializeApp({ ...serviceAccount })
+const db = firebase.firestore()
+export { db }

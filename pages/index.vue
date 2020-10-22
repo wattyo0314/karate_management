@@ -50,7 +50,8 @@
 </template>
 
 <script>
-
+import { db } from '~/plugins/firebase.js'
+import { mapGetters } from 'vuex'
 
 export default {
   data() {
@@ -73,35 +74,34 @@ export default {
           value: 'age'
         }
       ],
-      students: [
-        {
-          familyName:'渡邊',
-          firstName:'佐資',
-          familyNameKana: 'ワタナベ',
-          firstNameKana: 'サスケ',
-          
-        },
-        {
-          name:'渡邊佑資',
-          furigana: 'ワタナベユウシ',
-         
-        },
-        {
-          name:'渡邊仁美',
-          furigana: 'ワタナベヒトミ',
-          
-        },
-      ],
+          familyName:'',
+          firstName:'',
+          familyNameKana: '',
+          firstNameKana: '',
+          familyName:'',
+          firstName:'',
+          familyNameKana: '',
+          firstNameKana: '',
+          familyName:'',
+          firstName:'',
+          familyNameKana: '',
+          firstNameKana: '',
       initial: '無級',
       level: [
         '無級','10級','9級','8級','7級','6級','5級','4級','3級','2級','1級','初段','2段','3段','4段','5段','6段','7段'
       ]
     }
   },
+  created: function () {
+    this.$store.dispatch('setStudentsRef', db.collection('students'))
+  },
   methods: {
     // age: function () {
     //   return moment().diff(this.birthday, 'years')
     // }
-  }
+  },
+  computed: {
+    ...mapGetters({students: 'getStudents' })
+  },
 }
 </script>
