@@ -69,13 +69,6 @@ export default {
       parentsFirstName: '',
     }
   },
-  mounted () {
-      this.$emit('parentMethod', {familyName:this.familyName,
-                                  firstName:this.firstName,
-                                  parentsFamilyName:this.parentsFamilyName,
-                                  parentsFirstName:this.parentsFirstName
-                                  })
-    }
 }
 </script>
 

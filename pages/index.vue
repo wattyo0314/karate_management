@@ -1,25 +1,25 @@
 <template>
   <v-app>
     <v-main>
-      <v-container>
+      <v-container text-xs-center>
         <v-row>
           <v-col>
-            <v-row justify="center">
-              <v-icon class="ml-5">
-                mdi-account
+            <v-row>
+            <v-icon class="ml-5">
+              mdi-account
               </v-icon>
-              <h1 class="ml-5">生徒管理</h1>
+              <h1 class="ml-5">生徒一覧</h1>
               <v-spacer></v-spacer>
-              <v-btn to="/add" color="primary" class="mr-5">
+            <v-btn to="/add2" color="primary" class="mr-5">
               <v-icon>
                 mdi mdi-account-plus
               </v-icon>
-              </v-btn>
+            </v-btn>
             </v-row>
-            <v-divider color="blue"/>
+          <v-divider color="blue"/>
           </v-col>
         </v-row>
-          <v-row justify="center">
+        <v-row justify="center">
             <v-col cols="10">
               <v-data-table :headers="headers" dense :items="students">
                 <template v-slot:body="{items: students}">
@@ -35,16 +35,33 @@
                         label="保持級"
                         hide-details
                         single-line
-                        style="width:150px;">
+                        style="width:100px;">
                         </v-select>
                       </td>
-                      <td><v-icon @click="deleteData(index, student.familyName)">mdi-delete</v-icon></td>
+                      <td>{{student.age}}</td>
+                      <v-dialog v-model="dialog" scrollable max-width="50%">
+                        <template v-slot:activator="{ on }">
+                      <td><v-icon  v-on="on">mdi-delete</v-icon></td>
+                        </template>
+                        <v-card>
+                          <v-row justify="center">
+                            <v-card-title>{{student.familyName}} {{student.firstName}}を削除しますか？</v-card-title>
+                          </v-row>
+                            <v-row justify="center">
+                                <v-card-actions>
+                                  <v-btn color="primary"  @click="deleteData(index, student.familyName)">はい</v-btn>
+                                  <v-btn @click="dialog = false">いいえ</v-btn>
+                                </v-card-actions>
+                          </v-row>
+                        </v-card>
+                      </v-dialog>
+                      <td><v-icon  v-on="on">mdi-contacts</v-icon></td>
                     </tr>
                   </tbody>
                 </template>
               </v-data-table>
             </v-col>
-          </v-row>
+        </v-row>
       </v-container>
     </v-main>
   </v-app>
@@ -53,7 +70,6 @@
 <script>
 import { db } from '~/plugins/firebase.js'
 import { mapGetters,  mapActions } from 'vuex'
-
 export default {
   
   data() {
@@ -79,20 +95,35 @@ export default {
           text: '削除',
           value: 'delete',
           sortable: false,
+        },
+        {
+          text: '詳細',
+          value: 'detail',
+          sortable: false,
         }
       ],
-          familyName:'',
-          firstName:'',
-          familyNameKana: '',
-          firstNameKana: '',
-          familyName:'',
-          firstName:'',
-          familyNameKana: '',
-          firstNameKana: '',
-          familyName:'',
-          firstName:'',
-          familyNameKana: '',
-          firstNameKana: '',
+      students: [
+        {
+          familyName: '渡邊',
+          firstName: '佐資',
+          familyNameKana: 'ワタナベ',
+          firstNameKana: 'サスケ',
+          age: '20歳',
+        }
+      ],
+          dialog: false,
+          // familyName:'',
+          // firstName:'',
+          // familyNameKana: '',
+          // firstNameKana: '',
+          // familyName:'',
+          // firstName:'',
+          // familyNameKana: '',
+          // firstNameKana: '',
+          // familyName:'',
+          // firstName:'',
+          // familyNameKana: '',
+          // firstNameKana: '',
       initial: '無級',
       level: [
         '無級','10級','9級','8級','7級','6級','5級','4級','3級','2級','1級','初段','2段','3段','4段','5段','6段','7段'
@@ -100,12 +131,15 @@ export default {
     }
   },
   created: function () {
-    this.$store.dispatch('setStudentsRef', db.collection('students'))
+    this.$store.dispatch('add/init', db.collection('students'))
   },
   methods: {
     // age: function () {
-    //   return moment().diff(this.birthday, 'years')
+      //   return moment().diff(this.birthday, 'years')
     // }
+    deleteData () {
+      
+    }
   },
   computed: {
     ...mapGetters({students: 'getStudents' })

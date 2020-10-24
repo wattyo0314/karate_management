@@ -8,7 +8,7 @@
               <v-icon class="ml-5">
                 mdi-account
               </v-icon>
-              <h1 class="ml-5">生徒管理</h1>
+              <h1 class="ml-5">生徒登録</h1>
               <v-spacer></v-spacer>
             </v-row>
             <v-divider color="blue"/>
