@@ -35,14 +35,25 @@
 </template>
 
 <script>
-import { db } from '~/plugins/firebase.js'
 import { ValidationObserver, ValidationProvider } from 'vee-validate'
-import axiosJsonpAdapter from 'axios-jsonp'
-const ZIPCODE_API_URL = 'http://zipcloud.ibsnet.co.jp/api/search'
+import Name from '~/components/profile/Name.vue'
+import Kana from '~/components/profile/Kana.vue'
+import GenderLilationship from '~/components/profile/GenderLilationship.vue'
+import BirthdayPhoneNumber from '~/components/profile/BirthdayPhoneNumber.vue'
+import Address from '~/components/profile/Address.vue'
+import Building from '~/components/profile/Building.vue'
+import Remark from '~/components/profile/Remark.vue'
 export default {
   components : {
     ValidationObserver,
-    ValidationProvider
+    ValidationProvider,
+    Name,
+    Kana,
+    GenderLilationship,
+    BirthdayPhoneNumber,
+    Address,
+    Building,
+    Remark
   },
   data() {
     return {
