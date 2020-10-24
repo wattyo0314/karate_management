@@ -78,17 +78,6 @@ export default {
       message: '',
     }
   },
-  watch: {
-    menu (val) {
-      val && setTimeout(() => (
-        // 年から選ぶようにする
-        this.$refs.picker.activePicker = 'YEAR',
-        // 選び始めたら初期化
-        this.pickerDate = null
-      ))
-    },
-
-  },
   methods: {
     registration() {
         const student = {
