@@ -3,24 +3,23 @@
     <v-main>
       <v-container text-xs-center>
         <v-row>
-          <v-col cols="12">
-            <v-layout justify-center>
-              <v-icon class="ml-5">
-                mdi-account
+          <v-col>
+            <v-row>
+            <v-icon class="ml-5">
+              mdi-account
               </v-icon>
-              <h1 class="ml-5">生徒管理</h1>
+              <h1 class="ml-5">生徒一覧</h1>
               <v-spacer></v-spacer>
-              <v-btn to="/add2" color="primary" class="mr-5">
+            <v-btn to="/add2" color="primary" class="mr-5">
               <v-icon>
                 mdi mdi-account-plus
               </v-icon>
-              </v-btn>
-            </v-layout>
-            <v-divider color="blue"/>
+            </v-btn>
+            </v-row>
+          <v-divider color="blue"/>
           </v-col>
         </v-row>
-        <v-row>
-          <v-layout justify-center>
+        <v-row justify="center">
             <v-col cols="10">
               <v-data-table :headers="headers" dense :items="students">
                 <template v-slot:body="{items: students}">
@@ -61,7 +60,6 @@
                 </template>
               </v-data-table>
             </v-col>
-          </v-layout>
         </v-row>
       </v-container>
     </v-main>

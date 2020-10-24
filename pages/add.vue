@@ -3,18 +3,20 @@
     <v-main>
       <v-container>
         <v-row>
-          <v-col cols="12">
-            <v-icon class="ml-5">
-              mdi-account
+          <v-col>
+            <v-row justify="center">
+              <v-icon class="ml-5">
+                mdi-account
               </v-icon>
-              <h1 class="ml-5">生徒管理</h1>
-              <v-divider color="primary"/>
+              <h1 class="ml-5">生徒登録</h1>
               <v-spacer></v-spacer>
+            </v-row>
+            <v-divider color="blue"/>
           </v-col>
-        </v-row >
+        </v-row>
           <ValidationObserver ref="observer" v-slot="{ invalid }" immediate>
-            <v-form  @submit.prevent="registration" v-model="valid">
-              <Name/>
+            <v-form @submit.prevent="registration" v-model="valid">
+              <Name @parentMethod="updateMessage" />
               <Kana />
               <GenderLilationship />
               <BirthdayPhoneNumber />
@@ -24,11 +26,11 @@
               <Remark />
                 <v-row dense>
                   <v-col justify="center" align="center">
-                    <v-btn type="submit" nuxt @click="$router.push('/')" color="success" :disabled="invalid">送信</v-btn>
+                    <v-btn type="submit" to="/" nuxt color="success" :disabled="invalid">送信</v-btn>
                   </v-col>
                 </v-row>
             </v-form>
-          </ValidationObserver>
+        </ValidationObserver>
       </v-container>
     </v-main>
   </v-app>
@@ -57,67 +59,52 @@ export default {
   },
   data() {
     return {
-      familyName: '',
-      firstName: '',
-      familyNameKana:'',
-      firstNameKana: '',
-      parentsFirstNameKana:"",
-      gender: null,
-      date: null,
-      menu: false,
       valid: false,
-      zipcode: '',
-      prefecture: '',
-      address: '',
-      building: '',
-      pickerDate: '',
-      phoneNumber: '',
-      parentsFamilyName: '',
-      parentsFirstName: '',
-      relationship: '',
-      message: '',
     }
   },
   methods: {
-    registration() {
-        const student = {
-          familyName : this.familyName,
-          firstName : this.firstName,
-          address: this.address,
-          zipcode: this.zipcode,
-          pickerDate: this.pickerDate,
-          phoneNumber: this.phoneNumber,
-          building: this.building,
-          gender: this.gender,
-          relationship: this.relationship,
-          familyNameKana: this.familyNameKana,
-          firstNameKana: this.firstNameKana,
-          parentsFirstNameKana: this.parentsFirstNameKana,
-          message: this.message,
-          createdAt: firebase.firestore.Timestamp
-        }
-        const studentsRef = db.collection('students').doc()
-        studentsRef.add(student)
-        this.familyName = ''
-        this.firstName = ''
-        this.address = ''
-        this.zipcode = ''
-        this.pickerDate = ''
-        this.phoneNumber = ''
-        this.building = ''
-        this.gender = ''
-        this.relationship = ''
-        this.familyNameKana = ''
-        this.firstNameKana = ''
-        this.parentsFirstNameKana = ''
-        this.message = ''
+    registration: function () {
+      const students = {
+        updateMessage (familyName) {
+        familyName: this.familyName
+        },
+        firstName: this.firstName,
+        familyNameKana: this.familyNameKana,
+        firstNameKana: this.firstNameKana,
+        parentsFirstNameKana: this.parentsFirstNameKana,
+        gender: this.gender,
+        date: this.date,
+        zipcode: this.zipcode,
+        prefecture: this.prefecture,
+        address: this.address,
+        building: this.building,
+        pickerDate: this.pickerDate,
+        phoneNumber: this.phoneNumber,
+        parentsFamilyName: this.parentsFamilyName,
+        parentsFirstName: this.parentsFirstName,
+        relationship: this.relationship,
+        message: this.message,
       }
+      const studentsRef = db.collection('students')
+      studentsRef.add(students)
+      familyName: ''
+      firstName: ''
+      familyNameKana:''
+      firstNameKana: ''
+      parentsFirstNameKana:""
+      gender: ''
+      date: null
+      zipcode: ''
+      prefecture: ''
+      address: ''
+      building: ''
+      pickerDate: ''
+      phoneNumber: ''
+      parentsFamilyName: ''
+      parentsFirstName: ''
+      relationship: ''
+      message: ''
+    }
   },
 }
 </script>
-
-<style lang="scss">
-  v-text-field {
-  min-height: 18px !important;
-}
-</style>
