@@ -69,6 +69,14 @@ export default {
       parentsFirstName: '',
     }
   },
+  created() {
+    this.sendName();
+  },
+  methods: {
+    sendName () {
+      this.$emit('send_name', {familyName: 'familyName', firstName: 'firstName'});
+    }
+  }
 }
 </script>
 

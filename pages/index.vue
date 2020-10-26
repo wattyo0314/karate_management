@@ -55,7 +55,7 @@
                           </v-row>
                         </v-card>
                       </v-dialog>
-                      <td><v-icon  v-on="on">mdi-contacts</v-icon></td>
+                      <td><v-icon>mdi-contacts</v-icon></td>
                     </tr>
                   </tbody>
                 </template>
@@ -69,9 +69,9 @@
 
 <script>
 import { db } from '~/plugins/firebase.js'
-import { mapGetters,  mapActions } from 'vuex'
+import { mapGetters, mapActions} from 'vuex'
 export default {
-  
+
   data() {
     return {
       headers: [
@@ -102,28 +102,19 @@ export default {
           sortable: false,
         }
       ],
-      students: [
-        {
-          familyName: '渡邊',
-          firstName: '佐資',
-          familyNameKana: 'ワタナベ',
-          firstNameKana: 'サスケ',
-          age: '20歳',
-        }
-      ],
           dialog: false,
-          // familyName:'',
-          // firstName:'',
-          // familyNameKana: '',
-          // firstNameKana: '',
-          // familyName:'',
-          // firstName:'',
-          // familyNameKana: '',
-          // firstNameKana: '',
-          // familyName:'',
-          // firstName:'',
-          // familyNameKana: '',
-          // firstNameKana: '',
+          familyName:'',
+          firstName:'',
+          familyNameKana: '',
+          firstNameKana: '',
+          familyName:'',
+          firstName:'',
+          familyNameKana: '',
+          firstNameKana: '',
+          familyName:'',
+          firstName:'',
+          familyNameKana: '',
+          firstNameKana: '',
       initial: '無級',
       level: [
         '無級','10級','9級','8級','7級','6級','5級','4級','3級','2級','1級','初段','2段','3段','4段','5段','6段','7段'
@@ -131,14 +122,14 @@ export default {
     }
   },
   created: function () {
-    this.$store.dispatch('add/init', db.collection('students'))
+    this.setStudentsRef
   },
   methods: {
+    ...mapActions[('setStudentsRef')],
     // age: function () {
       //   return moment().diff(this.birthday, 'years')
     // }
     deleteData () {
-      
     }
   },
   computed: {

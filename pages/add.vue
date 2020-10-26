@@ -65,9 +65,7 @@ export default {
   methods: {
     registration: function () {
       const students = {
-        updateMessage (familyName) {
-        familyName: this.familyName
-        },
+        familyName: this.familyName,
         firstName: this.firstName,
         familyNameKana: this.familyNameKana,
         firstNameKana: this.firstNameKana,
