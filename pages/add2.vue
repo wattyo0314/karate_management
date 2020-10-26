@@ -93,6 +93,7 @@ import {db}  from '~/plugins/firebase.js'
 import firebase  from '~/plugins/firebase.js'
 import { ValidationObserver, ValidationProvider } from 'vee-validate'
 import Name from '~/components/profile/Name.vue'
+
 export default {
   components : {
     ValidationObserver,

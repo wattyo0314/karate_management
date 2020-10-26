@@ -69,7 +69,7 @@
 
 <script>
 import { db } from '~/plugins/firebase.js'
-import { mapGetters, mapActions} from 'vuex'
+import { mapGetters} from 'vuex'
 export default {
 
   data() {
@@ -122,10 +122,10 @@ export default {
     }
   },
   created: function () {
-    this.setStudentsRef
+     this.$store.dispatch('setStudentsRef', db.collection('students'))
   },
   methods: {
-    ...mapActions[('setStudentsRef')],
+    // ...mapActions[('setStudentsRef')],
     // age: function () {
       //   return moment().diff(this.birthday, 'years')
     // }
