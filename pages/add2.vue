@@ -280,6 +280,21 @@
     </ValidationProvider>
   </v-col>
 </v-row>
+<v-col>
+    <ValidationProvider v-slot="{ errors, valid}" name="備考欄" rules="zenkaku">
+      <v-badge left color="grey lighten-1" content="任意">
+        <!-- 備考欄入力 -->
+        <v-textarea
+        label="備考欄"
+        outlined
+        placeholder="例）喘息持ちです"
+        v-model="message"
+        :error-messages="errors"
+        :success="valid"
+        style="width:365px;"  />
+      </v-badge>
+    </ValidationProvider>
+  </v-col>
                 <v-row dense>
                   <v-col justify="center" align="center">
                     <v-btn type="submit" nuxt color="success" :disabled="invalid">送信</v-btn>
@@ -324,6 +339,7 @@ export default {
       date: null,
       menu: false,
       building: '',
+      message: '',
       // entranced: '',
     }
   },
@@ -349,6 +365,7 @@ export default {
             address: this.address,
             zipcode: this.zipcode,
             building: this.building,
+            message: this.message
             // entranced: today.getFullYear() + "/" +  today.getMonth() + 1 + "/"+ today.getDate()  + "/" + today.getDay()
         }
         const studentsRef =  db.collection('students')
@@ -366,6 +383,7 @@ export default {
         this.address = '',
         this.zipcode = '',
         this.building = '',
+        this.message = '',
         // this.entranced = '',
         this.$router.push(`/`)
     },
