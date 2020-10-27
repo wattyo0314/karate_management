@@ -10,7 +10,7 @@
               </v-icon>
               <h1 class="ml-5">生徒一覧</h1>
               <v-spacer></v-spacer>
-            <v-btn to="/add2" color="primary" class="mr-5">
+            <v-btn to="/add" color="primary" class="mr-5">
               <v-icon>
                 mdi mdi-account-plus
               </v-icon>
@@ -25,7 +25,7 @@
                 <template v-slot:body="{items: students}">
                   <tbody>
                     <tr v-for="(student, index) in students" :key="student.id">
-                      <td  @click="detailData(index)">{{student.familyName}} {{student.firstName}}</td>
+                      <td>{{student.familyName}} {{student.firstName}}</td>
                       <td>{{student.familyNameKana}} {{student.firstNameKana}}</td>
                       <td>
                         <v-select
@@ -55,7 +55,7 @@
                           </v-row>
                         </v-card>
                       </v-dialog>
-                      <td><v-icon>mdi-contacts</v-icon></td>
+                      <td><nuxt-link :to="{ name: 'id', params: { id: student.id } }"><v-icon>mdi-contacts</v-icon></nuxt-link></td>
                     </tr>
                   </tbody>
                 </template>
@@ -121,8 +121,8 @@ export default {
       ]
     }
   },
-  created: function () {
-     this.$store.dispatch('setStudentsRef', db.collection('students'))
+  created() {
+    this.$store.dispatch('setStudentsRef', db.collection('students'))
   },
   methods: {
     // ...mapActions[('setStudentsRef')],
