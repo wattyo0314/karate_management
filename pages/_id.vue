@@ -38,8 +38,9 @@
         components: { StudentDetail },
         created () {
             const studentId = this.$route.params.id
-            console.log(studentId)
-            db.collection('student').where('docId', '==', studentId).get().doc.data()
+            db.collection('students').doc(studentId).get().then(doc =>{
+                const student = (doc.id, '=>', doc.data());
+            })
         },
         computed: {
         ...mapGetters({students: 'getStudents' })
