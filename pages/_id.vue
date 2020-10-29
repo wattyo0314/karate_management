@@ -4,9 +4,21 @@
             <v-container>
                 <v-row>
                     <v-col>
+                        <v-row justify="center">
+                            <v-icon class="ml-5">
+                            mdi-account
+                            </v-icon>
+                            <h1 class="ml-5">生徒情報</h1>
+                            <v-spacer></v-spacer>
+                        </v-row>
+                        <v-divider color="blue"/>
+                    </v-col>
+                </v-row>
+                <v-row>
+                    <v-col>
                         <v-card>
                             <v-card-title>
-                                    <StudentDetail :firstName="this.firstName">
+                                    <StudentDetail :firstName="this.firstName" :familyName="this.familyName">
                                 </StudentDetail>
                                 <!-- 名前：{{this.firstName}} -->
                             </v-card-title>
@@ -33,7 +45,7 @@
         data() {
             return {
                 firstName :'',
-                student: []
+                familyName: '',
             }
         },
         components: { StudentDetail },
@@ -42,6 +54,7 @@
             db.collection('students').doc(studentId).get().then(doc =>{
                 const studentData = (doc.id, '=>', doc.data());
                 this.firstName = studentData.firstName
+                this.familyName = studentData.familyName
             })
             // db.collection('students').doc(studentId).get().then((query) =>{
             //     query.forEach((doc) =>{

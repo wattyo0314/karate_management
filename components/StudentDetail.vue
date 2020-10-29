@@ -1,6 +1,6 @@
 <template>
     <div class="item">
-        <div>名前: {{firstName}}</div>
+        <div>{{familyName}} {{firstName}}</div>
     </div>
 </template>
 
@@ -8,8 +8,14 @@
     export default {
         name: "StudentDetail",
         props: {
-            firstName: String,
-            required: true,
+            firstName: {
+                type: String,
+                required: true
+            },
+            familyName: {
+                type: String,
+                required: true
+            }
         }
     }
 </script>
