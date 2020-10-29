@@ -6,8 +6,9 @@
                     <v-col>
                         <v-card>
                             <v-card-title>
-                                    <StudentDetail :firstName="student.firstName">
+                                    <StudentDetail :firstName="this.firstName">
                                 </StudentDetail>
+                                <!-- 名前：{{this.firstName}} -->
                             </v-card-title>
                         </v-card>
                     </v-col>
@@ -32,15 +33,24 @@
         data() {
             return {
                 firstName :'',
-                student: ''
+                student: []
             }
         },
         components: { StudentDetail },
         created () {
             const studentId = this.$route.params.id
             db.collection('students').doc(studentId).get().then(doc =>{
-                const student = (doc.id, '=>', doc.data());
+                const studentData = (doc.id, '=>', doc.data());
+                this.firstName = studentData.firstName
             })
+            // db.collection('students').doc(studentId).get().then((query) =>{
+            //     query.forEach((doc) =>{
+            //         const studentData = doc.data();
+            //         student.push([data.firstName])
+            //         this.firstName = data.firstName;
+            //         console.log(this.firstName)
+            //     })
+            // })
         },
         computed: {
         ...mapGetters({students: 'getStudents' })

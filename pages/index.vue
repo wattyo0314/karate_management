@@ -32,7 +32,6 @@
                         v-model="initial"
                         :items="level"
                         menu-props="auto"
-                        label="保持級"
                         hide-details
                         single-line
                         style="width:100px;">
