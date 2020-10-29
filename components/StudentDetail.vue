@@ -1,6 +1,6 @@
 <template>
     <div class="item">
-        <div>{{familyName}} {{firstName}}</div>
+        <div>{{familyName}} {{firstName}} {{familyNameKana}} {{firstNameKana}}</div>
     </div>
 </template>
 
@@ -13,6 +13,14 @@
                 required: true
             },
             familyName: {
+                type: String,
+                required: true
+            },
+            firstNameKana: {
+                type: String,
+                required: true
+            },
+            familyNameKana: {
                 type: String,
                 required: true
             }

@@ -17,23 +17,34 @@
                 <v-row justify="center">
                     <v-col cols="10">
                         <v-card>
-                            <v-list>
-                                <v-list-item-group color="primary">
+                            <v-list dense>
+                                <v-list-item-group>
                                     <v-list-item>
                                         <v-list-item-content>
-                                            <v-list-item-title class="font-weight-black" >名前</v-list-item-title>
+                                            <v-list-item-title class="font-weight-black">名前</v-list-item-title>
                                         </v-list-item-content>
                                         <v-divider class="mx-4"
                                         vertical></v-divider>
                                         <v-list-item-content>
                                             <v-list-item-title>
-                                                <StudentDetail
-                                    :firstName="this.firstName"
-                                    :familyName="this.familyName">
-                                    </StudentDetail>
+                                                {{this.familyName}} {{this.firstName}}
                                             </v-list-item-title>
                                         </v-list-item-content>
                                     </v-list-item>
+                                    <v-divider></v-divider>
+                                    <v-list-item>
+                                        <v-list-item-content>
+                                            <v-list-item-title class="font-weight-black">名前カナ</v-list-item-title>
+                                        </v-list-item-content>
+                                        <v-divider class="mx-4"
+                                        vertical></v-divider>
+                                        <v-list-item-content>
+                                            <v-list-item-title>
+                                                {{this.familyNameKana}} {{this.firstNameKana}}
+                                            </v-list-item-title>
+                                        </v-list-item-content>
+                                    </v-list-item>
+                                    <v-divider></v-divider>
                                 </v-list-item-group>
                             </v-list>
                         </v-card>
@@ -52,7 +63,6 @@
 <script>
     import axios from 'axios';
     import { db } from '~/plugins/firebase.js'
-    import StudentDetail from '~/components/StudentDetail.vue'
     import { mapGetters } from 'vuex'
 
     export default {
@@ -60,15 +70,18 @@
             return {
                 firstName :'',
                 familyName: '',
+                firstNameKana: '',
+                familyNameKana: '',
             }
         },
-        components: { StudentDetail },
         created () {
             const studentId = this.$route.params.id
             db.collection('students').doc(studentId).get().then(doc =>{
                 const studentData = (doc.id, '=>', doc.data());
                 this.firstName = studentData.firstName
                 this.familyName = studentData.familyName
+                this.familyNameKana = studentData.familyNameKana
+                this.firstNameKana = studentData.firstNameKana
             })
             // db.collection('students').doc(studentId).get().then((query) =>{
             //     query.forEach((doc) =>{
