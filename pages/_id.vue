@@ -17,11 +17,16 @@
                 <v-row>
                     <v-col>
                         <v-card>
-                            <v-card-title>
-                                    <StudentDetail :firstName="this.firstName" :familyName="this.familyName">
+                            <v-list>
+                                <v-list-item-group
+                                color="primary"
+                                >
+                                    <StudentDetail
+                                    :firstName="this.firstName"
+                                    :familyName="this.familyName">
                                 </StudentDetail>
-                                <!-- 名前：{{this.firstName}} -->
-                            </v-card-title>
+                                </v-list-item-group>
+                            </v-list>
                         </v-card>
                     </v-col>
                 </v-row>
