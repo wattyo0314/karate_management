@@ -14,17 +14,26 @@
                         <v-divider color="blue"/>
                     </v-col>
                 </v-row>
-                <v-row>
-                    <v-col>
+                <v-row justify="center">
+                    <v-col cols="10">
                         <v-card>
                             <v-list>
-                                <v-list-item-group
-                                color="primary"
-                                >
-                                    <StudentDetail
+                                <v-list-item-group color="primary">
+                                    <v-list-item>
+                                        <v-list-item-content>
+                                            <v-list-item-title class="font-weight-black" >名前</v-list-item-title>
+                                        </v-list-item-content>
+                                        <v-divider class="mx-4"
+                                        vertical></v-divider>
+                                        <v-list-item-content>
+                                            <v-list-item-title>
+                                                <StudentDetail
                                     :firstName="this.firstName"
                                     :familyName="this.familyName">
-                                </StudentDetail>
+                                    </StudentDetail>
+                                            </v-list-item-title>
+                                        </v-list-item-content>
+                                    </v-list-item>
                                 </v-list-item-group>
                             </v-list>
                         </v-card>
