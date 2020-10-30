@@ -20,6 +20,7 @@
     "nuxt": "^2.14.5",
     "vee-validate": "^3.4.2",
     "vue-form-wizard": "^0.8.4",
+    "vue-i18n": "^8.22.1",
     "vue-phone-number-input": "^1.1.10",
     "vuexfire": "^3.0.1"
   },

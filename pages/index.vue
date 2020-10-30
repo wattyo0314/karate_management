@@ -29,12 +29,12 @@
                       <td>{{student.familyNameKana}} {{student.firstNameKana}}</td>
                       <td>
                         <v-select
-                        v-model="initial"
                         :items="level"
                         menu-props="auto"
                         hide-details
                         single-line
-                        style="width:100px;">
+                        style="width:100px;"
+                        >
                         </v-select>
                       </td>
                       <td>{{student.age}}</td>

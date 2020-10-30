@@ -6,6 +6,7 @@ export default {
 
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
+    htmlAttrs:{ lang: 'ja'},
     titleTemplate: '%s - karate_management',
     title: '道場生管理',
     meta: [
@@ -25,7 +26,7 @@ export default {
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
     '~/plugins/vee-validate',
-    '~/plugins/firebase'
+    '~/plugins/firebase',
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)

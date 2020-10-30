@@ -8,6 +8,7 @@ const studentsRef = db.collection('students')
 
 export const state = () => ({
    students: [],
+   locale: 'ja'
 })
 
 export const mutations = {

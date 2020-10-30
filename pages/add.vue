@@ -150,7 +150,7 @@
               <div>男性</div>
             </template>
             </v-radio>
-            <v-radio value="famale">
+            <v-radio value="female">
             <template v-slot:label>
               <div>女性</div>
             </template>
@@ -343,11 +343,7 @@ export default {
       // entranced: '',
     }
   },
-  // created: {
-  //   sendName() {
-  //     return ({firstName: this.firstName, familyName:this.familyName})
-  //   }
-  // },
+
   methods: {
       async registration() {
           const student = {

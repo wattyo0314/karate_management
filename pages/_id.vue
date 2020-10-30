@@ -19,6 +19,7 @@
                         <v-card>
                             <v-list dense>
                                 <v-list-item-group>
+                                    <!-- 名前表示欄 -->
                                     <v-list-item>
                                         <v-list-item-content>
                                             <v-list-item-title class="font-weight-black">名前</v-list-item-title>
@@ -32,6 +33,7 @@
                                         </v-list-item-content>
                                     </v-list-item>
                                     <v-divider></v-divider>
+                                    <!-- カナ表示欄 -->
                                     <v-list-item>
                                         <v-list-item-content>
                                             <v-list-item-title class="font-weight-black">名前カナ</v-list-item-title>
@@ -44,6 +46,22 @@
                                             </v-list-item-title>
                                         </v-list-item-content>
                                     </v-list-item>
+                                    <v-divider></v-divider>
+                                    <v-list-item>
+                                        <v-list-item-content>
+                                            <v-list-item-title class="font-weight-black">性別</v-list-item-title>
+                                        </v-list-item-content>
+                                        <v-divider class="mx-4"
+                                        vertical></v-divider>
+                                        <v-list-item-content>
+                                            <v-list-item-title v-if="this.gender == 'male'">
+                                                男性
+                                            </v-list-item-title>
+                                            <v-list-item-title v-else>
+                                                女性
+                                            </v-list-item-title>
+                                        </v-list-item-content>
+                                </v-list-item>
                                     <v-divider></v-divider>
                                 </v-list-item-group>
                             </v-list>
@@ -68,10 +86,11 @@
     export default {
         data() {
             return {
-                firstName :'',
+                firstName:'',
                 familyName: '',
                 firstNameKana: '',
                 familyNameKana: '',
+                gender: 'male',
             }
         },
         created () {
@@ -82,6 +101,8 @@
                 this.familyName = studentData.familyName
                 this.familyNameKana = studentData.familyNameKana
                 this.firstNameKana = studentData.firstNameKana
+                this.gender = studentData.gender
+                console.log(this.gender)
             })
             // db.collection('students').doc(studentId).get().then((query) =>{
             //     query.forEach((doc) =>{
