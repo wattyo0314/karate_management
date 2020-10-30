@@ -115,6 +115,32 @@
                                         </v-list-item-content>
                                 </v-list-item>
                                     <v-divider></v-divider>
+                                    <v-list-item>
+                                        <v-list-item-content>
+                                            <v-list-item-title class="font-weight-black">電話番号</v-list-item-title>
+                                        </v-list-item-content>
+                                        <v-divider class="mx-4"
+                                        vertical></v-divider>
+                                        <v-list-item-content>
+                                            <v-list-item-title>
+                                                {{this.phoneNumber}}
+                                            </v-list-item-title>
+                                        </v-list-item-content>
+                                </v-list-item>
+                                    <v-divider></v-divider>
+                                    <v-list-item>
+                                        <v-list-item-content>
+                                            <v-list-item-title class="font-weight-black">保護者氏名</v-list-item-title>
+                                        </v-list-item-content>
+                                        <v-divider class="mx-4"
+                                        vertical></v-divider>
+                                        <v-list-item-content>
+                                            <v-list-item-title>
+                                                {{this.parentsFamilyName}}  {{this.parentsFirstName}}
+                                            </v-list-item-title>
+                                        </v-list-item-content>
+                                </v-list-item>
+                                    <v-divider></v-divider>
                                 </v-list-item-group>
                             </v-list>
                         </v-card>
@@ -147,6 +173,9 @@
                 zipcode: '',
                 address: '',
                 building: '',
+                phoneNumber: '',
+                parentsFirstName: '',
+                parentsFamilyName: '',
             }
         },
         created () {
@@ -162,6 +191,9 @@
                 this.zipcode = studentData.zipcode
                 this.address = studentData.address
                 this.building = studentData.building
+                this.phoneNumber = studentData.phoneNumber
+                this.parentsFamilyName = studentData.parentsFamilyName
+                this.parentsFirstName = studentData.parentsFirstName
             })
         },
         computed: {

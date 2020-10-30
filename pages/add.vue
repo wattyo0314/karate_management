@@ -351,6 +351,8 @@ export default {
             firstName: this.firstName,
             familyNameKana: this.familyNameKana,
             firstNameKana: this.firstNameKana,
+            parentsFirstName: this.parentsFirstName,
+            parentsFamilyName: this.parentsFamilyName,
             parentsFirstNameKana: this.parentsFirstNameKana,
             gender: this.gender,
             relationship: this.relationship,
@@ -371,6 +373,8 @@ export default {
         this.familyNameKana = ''
         this.firstNameKana = ''
         this.parentsFirstNameKana = ''
+        this.parentsFamilyName = ''
+        this.parentsFirstName = ''
         this.gender = ''
         this.relationship = ''
         this.phoneNumber = '',
