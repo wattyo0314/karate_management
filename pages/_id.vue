@@ -185,13 +185,12 @@
                         </v-card>
                     </v-col>
                 </v-row>
+                <v-row justify="center" align="center" class="ml-5">
+                    <v-btn to="/" nuxt color="primary">戻る</v-btn>
+                    <v-btn color="secondary" class="ml-5">編集する</v-btn>
+                </v-row>
             </v-container>
         </v-main>
-        <div class="itemContainer">
-        </div>
-        <div class="button">
-            <nuxt-link to="/">戻る</nuxt-link>
-        </div>
     </v-app>
 </template>
 
