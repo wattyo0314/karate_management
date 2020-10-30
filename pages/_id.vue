@@ -63,6 +63,19 @@
                                         </v-list-item-content>
                                 </v-list-item>
                                     <v-divider></v-divider>
+                                    <v-list-item>
+                                        <v-list-item-content>
+                                            <v-list-item-title class="font-weight-black">生年月日</v-list-item-title>
+                                        </v-list-item-content>
+                                        <v-divider class="mx-4"
+                                        vertical></v-divider>
+                                        <v-list-item-content>
+                                            <v-list-item-title>
+                                                {{this.pickerDate}}
+                                            </v-list-item-title>
+                                        </v-list-item-content>
+                                </v-list-item>
+                                    <v-divider></v-divider>
                                 </v-list-item-group>
                             </v-list>
                         </v-card>
@@ -102,16 +115,8 @@
                 this.familyNameKana = studentData.familyNameKana
                 this.firstNameKana = studentData.firstNameKana
                 this.gender = studentData.gender
-                console.log(this.gender)
+                this.pickerDate = studentData.pickerDate
             })
-            // db.collection('students').doc(studentId).get().then((query) =>{
-            //     query.forEach((doc) =>{
-            //         const studentData = doc.data();
-            //         student.push([data.firstName])
-            //         this.firstName = data.firstName;
-            //         console.log(this.firstName)
-            //     })
-            // })
         },
         computed: {
         ...mapGetters({students: 'getStudents' })
