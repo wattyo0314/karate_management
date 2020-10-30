@@ -76,6 +76,45 @@
                                         </v-list-item-content>
                                 </v-list-item>
                                     <v-divider></v-divider>
+                                    <v-list-item>
+                                        <v-list-item-content>
+                                            <v-list-item-title class="font-weight-black">郵便番号</v-list-item-title>
+                                        </v-list-item-content>
+                                        <v-divider class="mx-4"
+                                        vertical></v-divider>
+                                        <v-list-item-content>
+                                            <v-list-item-title>
+                                                {{this.zipcode}}
+                                            </v-list-item-title>
+                                        </v-list-item-content>
+                                </v-list-item>
+                                    <v-divider></v-divider>
+                                    <v-list-item>
+                                        <v-list-item-content>
+                                            <v-list-item-title class="font-weight-black">住所</v-list-item-title>
+                                        </v-list-item-content>
+                                        <v-divider class="mx-4"
+                                        vertical></v-divider>
+                                        <v-list-item-content>
+                                            <v-list-item-title>
+                                                {{this.address}}
+                                            </v-list-item-title>
+                                        </v-list-item-content>
+                                </v-list-item>
+                                    <v-divider></v-divider>
+                                    <v-list-item>
+                                        <v-list-item-content>
+                                            <v-list-item-title class="font-weight-black">建物名</v-list-item-title>
+                                        </v-list-item-content>
+                                        <v-divider class="mx-4"
+                                        vertical></v-divider>
+                                        <v-list-item-content>
+                                            <v-list-item-title>
+                                                {{this.building}}
+                                            </v-list-item-title>
+                                        </v-list-item-content>
+                                </v-list-item>
+                                    <v-divider></v-divider>
                                 </v-list-item-group>
                             </v-list>
                         </v-card>
@@ -104,6 +143,10 @@
                 firstNameKana: '',
                 familyNameKana: '',
                 gender: 'male',
+                pickerDate: '',
+                zipcode: '',
+                address: '',
+                building: '',
             }
         },
         created () {
@@ -116,6 +159,9 @@
                 this.firstNameKana = studentData.firstNameKana
                 this.gender = studentData.gender
                 this.pickerDate = studentData.pickerDate
+                this.zipcode = studentData.zipcode
+                this.address = studentData.address
+                this.building = studentData.building
             })
         },
         computed: {
