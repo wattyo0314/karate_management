@@ -167,6 +167,19 @@
                                         </v-list-item-content>
                                 </v-list-item>
                                     <v-divider></v-divider>
+                                    <v-list-item>
+                                        <v-list-item-content>
+                                            <v-list-item-title class="font-weight-black">備考欄</v-list-item-title>
+                                        </v-list-item-content>
+                                        <v-divider class="mx-4"
+                                        vertical></v-divider>
+                                        <v-list-item-content>
+                                            <v-list-item-title>
+                                                {{this.message}}
+                                            </v-list-item-title>
+                                        </v-list-item-content>
+                                </v-list-item>
+                                    <v-divider></v-divider>
                                 </v-list-item-group>
                             </v-list>
                         </v-card>
@@ -205,6 +218,7 @@
                 parentsFirstNameKana: '',
                 parentsFirstNameKana: '',
                 relationship: '',
+                message: '',
             }
         },
         created () {
@@ -226,6 +240,7 @@
                 this.parentsFamilyNameKana = studentData.parentsFamilyNameKana
                 this.parentsFirstNameKana = studentData.parentsFirstNameKana
                 this.relationship = studentData.relationship
+                this.message = studentData.message
             })
         },
         computed: {
