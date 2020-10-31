@@ -24,7 +24,7 @@
             <v-data-table :headers="headers" dense :items="students">
               <template v-slot:body="{ items: students }">
                 <tbody>
-                  <tr v-for="(student, index) in students" :key="student.id">
+                  <tr v-for="(student, index) in students" :key="index">
                     <td>{{ student.familyName }} {{ student.firstName }}</td>
                     <td>{{ student.familyNameKana }} {{ student.firstNameKana }}</td>
                     <td>
@@ -51,9 +51,7 @@
                         </v-row>
                         <v-row justify="center">
                           <v-card-actions>
-                            <v-btn color="primary" @click="deleteData(index, student.familyName)"
-                              >はい</v-btn
-                            >
+                            <v-btn color="primary" @click="deleteData(student.id)">はい</v-btn>
                             <v-btn @click="dialog = false">いいえ</v-btn>
                           </v-card-actions>
                         </v-row>
@@ -161,7 +159,9 @@ export default {
     });
   },
   methods: {
-    deleteData() {},
+    deleteData(studentId) {
+      this.$store.dispatch('deleteData', { studentId });
+    },
   },
   computed: {
     ...mapGetters({ students: 'getStudents' }),
