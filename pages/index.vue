@@ -38,15 +38,27 @@
                       </v-select>
                     </td>
                     <td>{{ age }}歳</td>
-                    <v-dialog v-model="dialog" scrollable max-width="50%">
-                      <template v-slot:activator="{ on }">
-                        <td><v-icon v-on="on">mdi-delete</v-icon></td>
-                      </template>
-                      <v-card>
+                    <td>
+                      <v-icon @click.stop="removeBtn(student)">mdi-delete</v-icon>
+                    </td>
+                    <td>
+                      <nuxt-link :to="{ name: 'id', params: { id: student.id } }"
+                        ><v-icon>mdi-contacts</v-icon></nuxt-link
+                      >
+                    </td>
+                    <v-card>
+                      <v-dialog
+                        v-model="dialog"
+                        v-if="studentName"
+                        scrollable
+                        max-width="50%"
+                        activator
+                        light
+                      >
                         <v-row justify="center">
                           <v-card-title
-                            >{{ student.familyName }}
-                            {{ student.firstName }}を削除しますか？</v-card-title
+                            >{{ studentName.familyName }}
+                            {{ studentName.firstName }}を削除しますか？</v-card-title
                           >
                         </v-row>
                         <v-row justify="center">
@@ -55,13 +67,8 @@
                             <v-btn @click="dialog = false">いいえ</v-btn>
                           </v-card-actions>
                         </v-row>
-                      </v-card>
-                    </v-dialog>
-                    <td>
-                      <nuxt-link :to="{ name: 'id', params: { id: student.id } }"
-                        ><v-icon>mdi-contacts</v-icon></nuxt-link
-                      >
-                    </td>
+                      </v-dialog>
+                    </v-card>
                   </tr>
                 </tbody>
               </template>
@@ -108,6 +115,7 @@ export default {
           sortable: false,
         },
       ],
+      studentName: null,
       dialog: false,
       familyName: '',
       firstName: '',
@@ -161,6 +169,10 @@ export default {
   methods: {
     deleteData(studentId) {
       this.$store.dispatch('deleteData', { studentId });
+    },
+    removeBtn(student) {
+      this.studentName = student;
+      this.dialog = true;
     },
   },
   computed: {
