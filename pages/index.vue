@@ -37,7 +37,7 @@
                       >
                       </v-select>
                     </td>
-                    <td>{{ this.age }}歳</td>
+                    <td>{{ age }}歳</td>
                     <v-dialog v-model="dialog" scrollable max-width="50%">
                       <template v-slot:activator="{ on }">
                         <td><v-icon v-on="on">mdi-delete</v-icon></td>
