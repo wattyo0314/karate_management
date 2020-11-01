@@ -2,22 +2,6 @@
   <v-app>
     <v-main>
       <v-container text-xs-center>
-        <v-dialog v-model="dialog" v-if="studentName" max-width="50%" activator>
-          <v-card color="white">
-            <v-row justify="center">
-              <v-card-title
-                >{{ studentName.familyName }}
-                {{ studentName.firstName }}を削除しますか？</v-card-title
-              >
-            </v-row>
-            <v-row justify="center">
-              <v-card-actions>
-                <v-btn color="primary" @click="deleteData(student.id)">はい</v-btn>
-                <v-btn @click="dialog = false">いいえ</v-btn>
-              </v-card-actions>
-            </v-row>
-          </v-card>
-        </v-dialog>
         <v-row>
           <v-col>
             <v-row>
@@ -40,7 +24,7 @@
             <v-data-table :headers="headers" dense :items="students">
               <template v-slot:body="{ items: students }">
                 <tbody>
-                  <tr v-for="(student, index) in students" :key="index">
+                  <tr v-for="student in students" :key="student.id">
                     <td>{{ student.familyName }} {{ student.firstName }}</td>
                     <td>{{ student.familyNameKana }} {{ student.firstNameKana }}</td>
                     <td>
@@ -61,6 +45,22 @@
                       <nuxt-link :to="{ name: 'id', params: { id: student.id } }"
                         ><v-icon>mdi-contacts</v-icon></nuxt-link
                       >
+                      <v-dialog v-model="dialog" v-if="studentName" max-width="50%" activator>
+                        <v-card color="white">
+                          <v-row justify="center">
+                            <v-card-title
+                              >{{ studentName.familyName }}
+                              {{ studentName.firstName }}を削除しますか？</v-card-title
+                            >
+                          </v-row>
+                          <v-row justify="center">
+                            <v-card-actions>
+                              <v-btn color="primary" @click="deleteData(student.id)">はい</v-btn>
+                              <v-btn @click="dialog = false">いいえ</v-btn>
+                            </v-card-actions>
+                          </v-row>
+                        </v-card>
+                      </v-dialog>
                     </td>
                   </tr>
                 </tbody>
@@ -161,7 +161,7 @@ export default {
   },
   methods: {
     deleteData(studentId) {
-      this.$store.dispatch('deleteData', { studentId });
+      this.$store.dispatch('deleteData', studentId);
     },
     removeBtn(student) {
       this.studentName = student;
