@@ -2,6 +2,22 @@
   <v-app>
     <v-main>
       <v-container text-xs-center>
+        <v-dialog v-model="dialog" v-if="studentName" max-width="50%" activator>
+          <v-card color="white">
+            <v-row justify="center">
+              <v-card-title
+                >{{ studentName.familyName }}
+                {{ studentName.firstName }}を削除しますか？</v-card-title
+              >
+            </v-row>
+            <v-row justify="center">
+              <v-card-actions>
+                <v-btn color="primary" @click="deleteData(student.id)">はい</v-btn>
+                <v-btn @click="dialog = false">いいえ</v-btn>
+              </v-card-actions>
+            </v-row>
+          </v-card>
+        </v-dialog>
         <v-row>
           <v-col>
             <v-row>
@@ -46,29 +62,6 @@
                         ><v-icon>mdi-contacts</v-icon></nuxt-link
                       >
                     </td>
-                    <v-card>
-                      <v-dialog
-                        v-model="dialog"
-                        v-if="studentName"
-                        scrollable
-                        max-width="50%"
-                        activator
-                        light
-                      >
-                        <v-row justify="center">
-                          <v-card-title
-                            >{{ studentName.familyName }}
-                            {{ studentName.firstName }}を削除しますか？</v-card-title
-                          >
-                        </v-row>
-                        <v-row justify="center">
-                          <v-card-actions>
-                            <v-btn color="primary" @click="deleteData(student.id)">はい</v-btn>
-                            <v-btn @click="dialog = false">いいえ</v-btn>
-                          </v-card-actions>
-                        </v-row>
-                      </v-dialog>
-                    </v-card>
                   </tr>
                 </tbody>
               </template>
