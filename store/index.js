@@ -27,6 +27,6 @@ export const actions = {
       bindFirestoreRef('students', studentsRef)
    }),
    deleteData: firestoreAction((context,id) => {
-      studentsRef.doc(id).delete()
+      return studentsRef.doc(id).delete()
    })
 }

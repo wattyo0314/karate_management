@@ -39,14 +39,14 @@
                     </td>
                     <td>{{ age }}歳</td>
                     <td>
-                      <v-icon @click.stop="removeBtn(student)">mdi-delete</v-icon>
+                      <v-icon @click.stop="removeBtn(student, student.id)">mdi-delete</v-icon>
                     </td>
                     <td>
                       <nuxt-link :to="{ name: 'id', params: { id: student.id } }"
                         ><v-icon>mdi-contacts</v-icon></nuxt-link
                       >
                       <v-dialog v-model="dialog" v-if="studentName" max-width="50%" activator>
-                        <v-card color="white">
+                        <v-card>
                           <v-row justify="center">
                             <v-card-title
                               >{{ studentName.familyName }}
@@ -77,6 +77,7 @@
 import moment from 'moment';
 import { db } from '~/plugins/firebase.js';
 import { mapGetters } from 'vuex';
+const studentRef = db.collection('students');
 export default {
   data() {
     return {
@@ -149,7 +150,6 @@ export default {
   created() {
     this.$store.dispatch('setStudentsRef', db.collection('students'));
     // 年齢を計算 //
-    const studentRef = db.collection('students');
     studentRef.get().then(querySnapshot => {
       querySnapshot.forEach(birthDayDocSnapshot => {
         const birthDay = birthDayDocSnapshot.data().pickerDate;
@@ -163,8 +163,27 @@ export default {
     deleteData(studentId) {
       this.$store.dispatch('deleteData', studentId);
     },
-    removeBtn(student) {
+    removeBtn(student, studentIndex) {
+      // let id = String(this.$route.params.id);
+      const studentId = this.$route.params.id;
+      console.log(studentId);
+      console.log(studentIndex);
       this.studentName = student;
+      // studentRef
+      //   .where(studentIndex, '==', id)
+      //   .get()
+      //   .then(querySnapshot => {
+      //     querySnapshot.forEach(doc => {
+      //       if (studentIndex != doc.id) return;
+      //     });
+      //   });
+      // studentRef
+      //   .doc(id)
+      //   .get()
+      //   .then(doc => {
+      //     if (studentIndex != doc.id) return;
+      //   });
+      if (studentIndex != studentId) return;
       this.dialog = true;
     },
   },
