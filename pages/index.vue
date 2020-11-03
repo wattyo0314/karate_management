@@ -163,27 +163,25 @@ export default {
     deleteData(studentId) {
       this.$store.dispatch('deleteData', studentId);
     },
-    removeBtn(student, studentIndex) {
+    removeBtn(student, studentId) {
       // let id = String(this.$route.params.id);
-      const studentId = this.$route.params.id;
-      console.log(studentId);
-      console.log(studentIndex);
+      // const studentId = this.$route.params.id;
       this.studentName = student;
-      // studentRef
-      //   .where(studentIndex, '==', id)
-      //   .get()
-      //   .then(querySnapshot => {
-      //     querySnapshot.forEach(doc => {
-      //       if (studentIndex != doc.id) return;
-      //     });
-      //   });
-      // studentRef
-      //   .doc(id)
-      //   .get()
-      //   .then(doc => {
+      // studentRef.get().then(querySnapshot => {
+      //   querySnapshot.forEach(doc => {
+      //     console.log(doc.id);
+      //     console.log(studentIndex);
       //     if (studentIndex != doc.id) return;
       //   });
-      if (studentIndex != studentId) return;
+      // });
+      studentRef
+        .doc(studentId)
+        .get()
+        .then(doc => {
+          console.log(studentId);
+          console.log(doc.id);
+          if (studentId != doc.id) return;
+        });
       this.dialog = true;
     },
   },
