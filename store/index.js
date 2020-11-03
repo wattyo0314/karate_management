@@ -28,5 +28,10 @@ export const actions = {
    }),
    deleteData: firestoreAction((context,id) => {
       return studentsRef.doc(id).delete()
-   })
+   }),
+   // fetchLevel: firestoreAction((context,id) => {
+   //    return studentsRef.doc(id).update({
+   //       level: level
+   //    })
+   // })
 }

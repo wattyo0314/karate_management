@@ -9,40 +9,40 @@
       </v-app-bar>
       <v-navigation-drawer app v-model="drawer" clipped fixed color="blue lighten-3">
         <v-container>
-            <v-list-item>
-              <v-list-item-content>
-                <v-list-item-title class='title'>
-                  管理メニュー
-                </v-list-item-title>
-              </v-list-item-content>
-            </v-list-item>
+          <v-list-item>
+            <v-list-item-content>
+              <v-list-item-title class="title">
+                管理メニュー
+              </v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
           <v-divider />
           <v-list dense nav>
-            <nuxt-link to="#">
+            <nuxt-link to="/">
               <v-list-item v-for="nav_list in navlists" :key="nav_list.name">
                 <v-list-item-icon>
                   <v-icon>
-                    {{nav_list.icon}}
+                    {{ nav_list.icon }}
                   </v-icon>
                 </v-list-item-icon>
                 <v-list-item-content>
                   <v-list-item-title>
-                    {{nav_list.name}}
+                    {{ nav_list.name }}
                   </v-list-item-title>
                 </v-list-item-content>
               </v-list-item>
             </nuxt-link>
           </v-list>
         </v-container>
-        </v-navigation-drawer>
+      </v-navigation-drawer>
     </header>
-    <Nuxt/>
+    <Nuxt />
   </v-app>
 </template>
 
 <script>
 export default {
-  data () {
+  data() {
     return {
       clipped: false,
       drawer: false,
@@ -51,14 +51,10 @@ export default {
       right: true,
       rightDrawer: false,
       title: 'Vuetify.js',
-      navlists: [
-        {name: '生徒管理',icon: 'mdi-account'},
-      ]
-    }
-  }
-}
+      navlists: [{ name: '生徒管理', icon: 'mdi-account' }],
+    };
+  },
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

@@ -27,19 +27,20 @@
                   <tr v-for="student in students" :key="student.id">
                     <td>{{ student.familyName }} {{ student.firstName }}</td>
                     <td>{{ student.familyNameKana }} {{ student.firstNameKana }}</td>
-                    <td>
+                    <!-- <td>
                       <v-select
                         :items="level"
                         menu-props="auto"
                         hide-details
                         single-line
                         style="width:100px;"
+                        @blur="fetchLevel(student.id)"
                       >
                       </v-select>
                     </td>
-                    <td>{{ age }}歳</td>
+                    <td>{{ age }}歳</td> -->
                     <td>
-                      <v-icon @click.stop="removeBtn(student, student.id)">mdi-delete</v-icon>
+                      <v-icon @click="deleteData(student.id)">mdi-delete</v-icon>
                     </td>
                     <td>
                       <nuxt-link :to="{ name: 'id', params: { id: student.id } }"
@@ -90,14 +91,14 @@ export default {
           text: 'フリガナ氏名',
           value: 'familyNameKana' + 'firstNameKana',
         },
-        {
-          text: '保有級',
-          value: 'level',
-        },
-        {
-          text: '年齢',
-          value: 'age',
-        },
+        // {
+        //   text: '保有級',
+        //   value: 'level',
+        // },
+        // {
+        //   text: '年齢',
+        //   value: 'age',
+        // },
         {
           text: '削除',
           value: 'delete',
@@ -124,6 +125,7 @@ export default {
       familyNameKana: '',
       firstNameKana: '',
       age: '',
+      level: null,
       initial: '無級',
       level: [
         '無級',
@@ -184,6 +186,12 @@ export default {
         });
       this.dialog = true;
     },
+    // fetchLevel(studentId) {
+    //   const level = {
+    //     level: this.level,
+    //   };
+    //   studentRef.doc(studentId).update({ level });
+    // },
   },
   computed: {
     ...mapGetters({ students: 'getStudents' }),

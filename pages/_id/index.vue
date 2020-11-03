@@ -39,7 +39,9 @@
                     <v-divider class="mx-4" vertical></v-divider>
                     <v-list-item-content>
                       <v-list-item-title>
-                        {{ this.familyName }} {{ this.firstName }}
+                        <!-- <StudentName :familyName="this.familyName"> -->
+                          {{ this.familyName }} {{ this.firstName }}
+                        <!-- </StudentName> -->
                       </v-list-item-title>
                     </v-list-item-content>
                   </v-list-item>
@@ -203,8 +205,11 @@
 import moment from 'moment';
 import { db } from '~/plugins/firebase.js';
 import { mapGetters } from 'vuex';
-
+import StudentName from '~/pages/_id/edit/index.vue';
 export default {
+  // components: {
+  //   StudentName,
+  // },
   data() {
     return {
       firstName: '',
