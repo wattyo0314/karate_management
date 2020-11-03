@@ -189,7 +189,7 @@
         </v-row>
         <v-row justify="center" align="center" class="ml-5">
           <v-btn to="/" nuxt color="primary">戻る</v-btn>
-          <v-btn to="/:id/edit" color="secondary" class="ml-5" nuxt>編集する</v-btn>
+          <v-btn :to="`/${studentId}/edit`" color="secondary" class="ml-5" nuxt>編集する</v-btn>
           <!-- <nuxt-link :to="{ name: 'id', params: { id: student.id } }"
             ><v-icon>mdi-contacts</v-icon></nuxt-link
           > -->
@@ -255,6 +255,9 @@ export default {
   methods: {},
   computed: {
     ...mapGetters({ students: 'getStudents' }),
+    studentId() {
+      return this.$route.params.id;
+    },
   },
   filters: {
     dateFilter: function(date) {

@@ -349,6 +349,7 @@
             <v-row dense>
               <v-col justify="center" align="center">
                 <v-btn type="submit" nuxt color="success" :disabled="invalid">送信</v-btn>
+                <v-btn :to="`/${studentId}`" nuxt color="success" :disabled="invalid">戻る</v-btn>
               </v-col>
             </v-row>
           </v-form>
@@ -458,6 +459,9 @@ export default {
   },
   computed: {
     // 入門日を記載する
+    studentId() {
+      return this.$route.params.id;
+    },
   },
   watch: {
     menu(val) {
