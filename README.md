@@ -15,7 +15,7 @@
 
 ## イメージ図
 - インデックスページです(右上のボタンを押すと道場生の追加ができるようになります。)
-https://i.gyazo.com/df2bfc19c5fd9e4959fdc5832c448a33.png
+[![Image from Gyazo](https://i.gyazo.com/1b7ae94dec70ac2dcdde0be38b006214.png)](https://gyazo.com/1b7ae94dec70ac2dcdde0be38b006214)
 - 道場生追加画面です(初期ではボタンは非活性となっており押すことができません)
 [![Image from Gyazo](https://i.gyazo.com/32f9e3114c1b6c1d3100a0a90914a26f.png)](https://gyazo.com/32f9e3114c1b6c1d3100a0a90914a26f)
 - 必須項目を全て入力するようになるとボタンが押せるようになります
