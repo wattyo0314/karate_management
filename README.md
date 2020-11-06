@@ -18,6 +18,7 @@
 [![Image from Gyazo](https://i.gyazo.com/1b7ae94dec70ac2dcdde0be38b006214.png)](https://gyazo.com/1b7ae94dec70ac2dcdde0be38b006214)
 - 道場生追加画面です(初期ではボタンは非活性となっており押すことができません)
 [![Image from Gyazo](https://i.gyazo.com/32f9e3114c1b6c1d3100a0a90914a26f.png)](https://gyazo.com/32f9e3114c1b6c1d3100a0a90914a26f)
+[![Image from Gyazo](https://i.gyazo.com/7e1764d7a4dbb7b100b0116dd3b6438b.png)](https://gyazo.com/7e1764d7a4dbb7b100b0116dd3b6438b)
 - 必須項目を全て入力するようになるとボタンが押せるようになります
 [![Image from Gyazo](https://i.gyazo.com/30b08a9ab505de2c324f0937a92ccc59.png)](https://gyazo.com/30b08a9ab505de2c324f0937a92ccc59)
 - バリデーションにも対応しており、郵便番号を入力すると自動で住所が表示されます。
