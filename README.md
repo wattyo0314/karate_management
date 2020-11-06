@@ -1,11 +1,11 @@
-For detailed explanation on 道場生管理アプリ
+道場生管理アプリ
 ====
 
 ## Overview
-このアプリはタスクが簡単にできるアプリです。
+このアプリは道場生の登録閲覧ができるアプリです。
 
 ## Description
-リストを作成し、その中にタスクを貼り付けていきます。
+道場生の登録を行い管理していきます。
 
 ## set up
 ①URLをクリックすると道場生の一覧が表示されます。
@@ -24,11 +24,6 @@ https://i.gyazo.com/df2bfc19c5fd9e4959fdc5832c448a33.png
 [![Image from Gyazo](https://i.gyazo.com/5098d7ba7da7c1553a1906a596aa346c.png)](https://gyazo.com/5098d7ba7da7c1553a1906a596aa346c)
 - 詳細画面です。
 [![Image from Gyazo](https://i.gyazo.com/e458e380089efad4a60cc3d882124987.png)](https://gyazo.com/e458e380089efad4a60cc3d882124987)
-
-## 実装予定内容
-- 一覧表示で生年月日から年齢を表示できるようにしたい
-- ログイン機能
-- 現在の保持級をセレクト表示できるようにしたい
 
 ## 接続先URL
 https://karatemanagement-e9371.web.app/
