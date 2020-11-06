@@ -86,10 +86,12 @@ export default {
         {
           text: '氏名',
           value: 'familyName' + 'firstName',
+          sortable: false,
         },
         {
           text: 'フリガナ氏名',
           value: 'familyNameKana' + 'firstNameKana',
+          sortable: false,
         },
         // {
         //   text: '保有級',
@@ -125,7 +127,7 @@ export default {
       familyNameKana: '',
       firstNameKana: '',
       age: '',
-      level: null,
+      level: '',
       initial: '無級',
       level: [
         '無級',
