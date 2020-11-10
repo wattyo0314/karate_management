@@ -2,18 +2,14 @@
   <v-app>
     <v-main>
       <v-container>
-        <v-row>
-          <v-col>
-            <v-row justify="center">
-              <v-icon class="ml-5">
-                mdi-account
-              </v-icon>
-              <h1 class="ml-5">生徒管理</h1>
-              <v-spacer></v-spacer>
-            </v-row>
-            <v-divider color="blue" />
-          </v-col>
+        <v-row justify="center">
+          <v-icon class="ml-5">
+            mdi-account
+          </v-icon>
+          <h1 class="ml-5">生徒管理</h1>
+          <v-spacer></v-spacer>
         </v-row>
+        <v-divider color="blue" />
         <ValidationObserver ref="observer" v-slot="{ invalid }" immediate>
           <v-form @submit.prevent="registration" v-model="valid">
             <!-- <v-row class="ml-5 mt-1" dense> -->
