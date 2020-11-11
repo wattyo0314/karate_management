@@ -1,24 +1,7 @@
 <template>
   <v-app>
-    <v-main>
-      <v-container text-xs-center>
-        <v-row>
-          <v-col>
-            <v-row>
-              <v-icon class="ml-5">
-                mdi-account
-              </v-icon>
-              <h1 class="ml-5">生徒一覧</h1>
-              <v-spacer></v-spacer>
-              <v-btn to="/add" color="primary" class="mr-5">
-                <v-icon>
-                  mdi mdi-account-plus
-                </v-icon>
-              </v-btn>
-            </v-row>
-            <v-divider color="blue" />
-          </v-col>
-        </v-row>
+    <v-main class="pt-0">
+      <v-container>
         <v-row justify="center">
           <v-col cols="10">
             <v-data-table :headers="headers" dense :items="students">
@@ -82,6 +65,9 @@ const studentRef = db.collection('students');
 export default {
   data() {
     return {
+      title: {
+        title: '生徒一覧',
+      },
       headers: [
         {
           text: '氏名',
@@ -162,6 +148,9 @@ export default {
         this.age = y;
       });
     });
+  },
+  mounted() {
+    this.$nuxt.$emit('updateTitle', this.title.title);
   },
   methods: {
     deleteData(studentId) {

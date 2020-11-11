@@ -1,19 +1,7 @@
 <template>
   <v-app>
-    <v-main>
+    <v-main class="pt-0">
       <v-container>
-        <v-row>
-          <v-col>
-            <v-row justify="center">
-              <v-icon class="ml-5">
-                mdi-account
-              </v-icon>
-              <h1 class="ml-5">生徒管理</h1>
-              <v-spacer></v-spacer>
-            </v-row>
-            <v-divider color="blue" />
-          </v-col>
-        </v-row>
         <ValidationObserver ref="observer" v-slot="{ invalid }" immediate>
           <v-form @submit.prevent="registration" v-model="valid">
             <!-- <v-row class="ml-5 mt-1" dense> -->
@@ -373,6 +361,9 @@ export default {
   },
   data() {
     return {
+      title: {
+        title: '生徒登録',
+      },
       valid: false,
       familyName: '',
       firstName: '',
@@ -393,7 +384,9 @@ export default {
       message: '',
     };
   },
-
+  mounted() {
+    this.$nuxt.$emit('updateTitle', this.title.title);
+  },
   methods: {
     async registration() {
       const student = {

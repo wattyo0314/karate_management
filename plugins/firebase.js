@@ -3,14 +3,14 @@ import 'firebase/auth'
 import 'firebase/firestore'
 
 const firebaseConfig = {
-  apiKey: process.env.FB_API_KEY,
-  authDomain: process.env.FB_AUTH_DOMAIN,
-  databaseURL: process.env.FB_DATABASE_URL,
-  projectId: process.env.FB_PROJECTID,
-  storageBucket: process.env.FB_STORAGE_BUCKET,
-  messagingSenderId: process.env.FB_MESSAGING_SENDER_ID,
-  appId: process.env.FB_APPID,
-  measurementId: process.env.FB_MEASUREMENTID
+  apiKey: "AIzaSyDRKz570GMLlCQ0TXmr80szY6ApOBUTfAE",
+    authDomain: "karatemanagement-e9371.firebaseapp.com",
+    databaseURL: "https://karatemanagement-e9371.firebaseio.com",
+    projectId: "karatemanagement-e9371",
+    storageBucket: "karatemanagement-e9371.appspot.com",
+    messagingSenderId: "96935958010",
+    appId: "1:96935958010:web:fedea72702bc8e1b918043",
+    measurementId: "G-8NDPNQH6YR"
 };
 
 
