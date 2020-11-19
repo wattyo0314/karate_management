@@ -7,7 +7,7 @@
             <v-list dense>
               <v-list-item-group>
                 <!-- 名前表示欄 -->
-                <v-list-item v-for="(list, index) in lists" :key="index">
+                <v-list-item>
                   <v-list-item-content>
                     <v-list-item-title class="font-weight-black">入門日</v-list-item-title>
                   </v-list-item-content>
@@ -68,7 +68,7 @@
                   <v-divider class="mx-4" vertical></v-divider>
                   <v-list-item-content>
                     <v-list-item-title>
-                      {{ this.pickerDate }}
+                      {{ this.date }}
                     </v-list-item-title>
                   </v-list-item-content>
                 </v-list-item>
@@ -191,14 +191,17 @@ import { db } from '~/plugins/firebase.js';
 import { mapGetters } from 'vuex';
 import StudentName from '~/pages/_id/edit/index.vue';
 export default {
-  title: '生徒詳細',
   data() {
     return {
+      title: {
+        title: '生徒情報',
+      },
       firstName: '',
       familyName: '',
       firstNameKana: '',
       familyNameKana: '',
-      gender: 'male',
+      gender: '',
+      date: '',
       pickerDate: '',
       zipcode: '',
       address: '',
@@ -225,6 +228,7 @@ export default {
         this.familyNameKana = studentData.familyNameKana;
         this.firstNameKana = studentData.firstNameKana;
         this.gender = studentData.gender;
+        this.date = studentData.date;
         this.pickerDate = studentData.pickerDate;
         this.zipcode = studentData.zipcode;
         this.address = studentData.address;
@@ -238,6 +242,9 @@ export default {
         this.message = studentData.message;
         this.entranced = studentData.entranced;
       });
+  },
+  mounted() {
+    this.$nuxt.$emit('updateTitle', this.title.title);
   },
   methods: {},
   computed: {

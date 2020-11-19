@@ -14,10 +14,11 @@
                   label="姓"
                   outlined
                   placeholder="田中"
-                  v-model="familyName"
                   required
                   :error-messages="errors"
                   :success="valid"
+                  v-model="familyName"
+                  @change="updateValue"
                 />
               </v-badge>
             </ValidationProvider>
@@ -28,14 +29,15 @@
                 label="名"
                 outlined
                 placeholder="太郎"
-                v-model="firstName"
                 required
                 :error-messages="errors"
                 :success="valid"
+                v-model="firstName"
+                @change="updateValue"
               />
             </ValidationProvider>
           </v-col>
-          <v-col />
+          <v-spacer />
           <!-- 保護者氏名入力 -->
           <v-col cols="2">
             <ValidationProvider v-slot="{ errors, valid }" name="保護者姓" rules="required|zenkaku">
@@ -48,6 +50,7 @@
                   required
                   :error-messages="errors"
                   :success="valid"
+                  @change="updateValue"
                 />
               </v-badge>
             </ValidationProvider>
@@ -62,10 +65,11 @@
                 required
                 :error-messages="errors"
                 :success="valid"
+                @change="updateValue"
               />
             </ValidationProvider>
           </v-col>
-          <v-col />
+          <v-spacer />
         </v-row>
         <v-row class="ml-5" dense>
           <v-col cols="2">
@@ -84,6 +88,7 @@
                   required
                   :error-messages="errors"
                   :success="valid"
+                  @change="updateValue"
                 />
               </v-badge>
             </ValidationProvider>
@@ -102,10 +107,11 @@
                 required
                 :error-messages="errors"
                 :success="valid"
+                @change="updateValue"
               />
             </ValidationProvider>
           </v-col>
-          <v-col cols="2" />
+          <v-col />
           <v-col cols="2">
             <!-- 道場生姓名フリガナ入力 -->
             <ValidationProvider
@@ -122,6 +128,7 @@
                   required
                   :error-messages="errors"
                   :success="valid"
+                  @change="updateValue"
                 />
               </v-badge>
             </ValidationProvider>
@@ -140,14 +147,15 @@
                 required
                 :error-messages="errors"
                 :success="valid"
+                @change="updateValue"
               />
             </ValidationProvider>
           </v-col>
           <v-spacer />
         </v-row>
-        <v-row dense>
-          <v-col cols="6" class="ml-5">
-            <!-- 入力 -->
+        <v-row class="ml-5" dense>
+          <v-col cols="6">
+            <!-- 性別入力 -->
             <ValidationProvider v-slot="{ errors, valid }" name="性別" rules="required">
               <v-badge left color="error" content="必須">
                 <v-radio-group
@@ -156,6 +164,7 @@
                   :error-messages="errors"
                   :success="valid"
                   row
+                  @change="updateValue"
                 >
                   <template v-slot:label>
                     <div>性別：</div>
@@ -186,6 +195,7 @@
                   required
                   :error-messages="errors"
                   :success="valid"
+                  @change="updateValue"
                 />
               </v-badge>
             </ValidationProvider>
@@ -213,6 +223,7 @@
                       v-on="on"
                       :error-messages="errors"
                       :success="valid"
+                      @change="updateValue"
                     />
                   </v-badge>
                 </ValidationProvider>
@@ -225,11 +236,14 @@
                 :max="new Date().toISOString().substr(0, 10)"
                 :picker-date="pickerDate"
                 min="1950-01-01"
-                @change="save"
+                @change="
+                  save;
+                  updateValue;
+                "
               ></v-date-picker>
             </v-menu>
           </v-col>
-          <v-col cols="4" />
+          <v-spacer />
           <v-col cols="2">
             <!-- 連絡先入力 -->
             <ValidationProvider v-slot="{ errors, valid }" name="連絡先" rules="phone|required">
@@ -241,6 +255,7 @@
                   v-model="phoneNumber"
                   :error-messages="errors"
                   :success="valid"
+                  @change="updateValue"
                 />
               </v-badge>
             </ValidationProvider>
@@ -261,6 +276,7 @@
                   :error-messages="errors"
                   :success="valid"
                   @blur="fetchAddress"
+                  @change="updateValue"
                 />
               </v-badge>
             </ValidationProvider>
@@ -278,6 +294,7 @@
                 :error-messages="errors"
                 :success="valid"
                 style="width:365px;"
+                @change="updateValue"
               />
             </v-badge>
           </ValidationProvider>
@@ -299,6 +316,7 @@
                   :error-messages="errors"
                   :success="valid"
                   style="width:365px;"
+                  @change="updateValue"
                 />
               </v-badge>
             </ValidationProvider>
@@ -316,6 +334,7 @@
                 :error-messages="errors"
                 :success="valid"
                 style="width:365px;"
+                @change="updateValue"
               />
             </v-badge>
           </ValidationProvider>
@@ -330,6 +349,7 @@ import { ValidationProvider } from 'vee-validate';
 import axiosJsonpAdapter from 'axios-jsonp';
 const ZIPCODE_API_URL = 'http://zipcloud.ibsnet.co.jp/api/search';
 export default {
+  name: 'Student',
   data() {
     return {
       familyName: '',
@@ -349,47 +369,10 @@ export default {
       menu: false,
       building: '',
       message: '',
+      // updateValue: null,
     };
   },
   methods: {
-    async registration() {
-      const student = {
-        familyName: this.familyName,
-        firstName: this.firstName,
-        familyNameKana: this.familyNameKana,
-        firstNameKana: this.firstNameKana,
-        parentsFirstName: this.parentsFirstName,
-        parentsFamilyName: this.parentsFamilyName,
-        parentsFirstNameKana: this.parentsFirstNameKana,
-        gender: this.gender,
-        relationship: this.relationship,
-        pickerDate: this.pickerDate,
-        date: this.date,
-        phoneNumber: this.phoneNumber,
-        address: this.address,
-        zipcode: this.zipcode,
-        building: this.building,
-        message: this.message,
-      };
-      const studentsRef = db.collection('students');
-      await studentsRef.add(student);
-      this.familyName = '';
-      this.firstName = '';
-      this.familyNameKana = '';
-      this.firstNameKana = '';
-      this.parentsFirstNameKana = '';
-      this.parentsFamilyName = '';
-      this.parentsFirstName = '';
-      this.gender = '';
-      this.relationship = '';
-      this.phoneNumber = '';
-      this.date = null;
-      this.address = '';
-      this.zipcode = '';
-      this.building = '';
-      this.message = '';
-      this.$router.push(`/`);
-    },
     save(date) {
       this.$refs.menu.save(date);
       // 再入力に備えて、入力が終わったら同期する
@@ -412,6 +395,27 @@ export default {
       // 返却されたデータを挿入する
       this.address = res.results[0].address1 + res.results[0].address2 + res.results[0].address3;
     },
+    updateValue() {
+      this.$emit(
+        'change',
+        this.familyName,
+        this.firstName,
+        this.familyNameKana,
+        this.firstNameKana,
+        this.parentsFamilyName,
+        this.parentsFirstName,
+        this.parentsFirstNameKana,
+        this.gender,
+        this.relationship,
+        this.date,
+        this.pickerDate,
+        this.phoneNumber,
+        this.zipcode,
+        this.address,
+        this.building,
+        this.message
+      );
+    },
   },
   computed: {
     // 入門日を記載する
@@ -420,12 +424,11 @@ export default {
     menu(val) {
       val &&
         setTimeout(
-          () => (
+          () =>
             // 年から選ぶようにする
-            (this.$refs.picker.activePicker = 'YEAR'),
-            // 選び始めたら初期化
-            (this.pickerDate = null)
-          )
+            (this.$refs.picker.activePicker = 'YEAR')
+          // 選び始めたら初期化
+          // (this.pickerDate = null)
         );
     },
   },

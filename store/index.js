@@ -1,4 +1,4 @@
-import { vuexfireMutations ,firestoreAction  } from 'vuexfire'
+import { vuexfireMutations, firestoreAction } from 'vuexfire'
 import 'firebase/firestore'
 import firebase from '~/plugins/firebase.js'
 
@@ -23,15 +23,49 @@ export const getters = {
 
 
 export const actions = {
-   setStudentsRef: firestoreAction(({  bindFirestoreRef }, studentsRef) => {
+   setStudentsRef: firestoreAction(({ bindFirestoreRef }, studentsRef) => {
       bindFirestoreRef('students', studentsRef)
    }),
-   deleteData: firestoreAction((context,id) => {
+   registration: firestoreAction(({context}, {
+      firstName,
+      familyName,
+      familyNameKana,
+      firstNameKana,
+      parentsFirstNameKana,
+      gender,
+      relationship,
+      pickerDate,
+      phoneNumber,
+      address,
+      zipcode,
+      building,
+      message,
+   }) => {
+      const studentData =
+      'firstName:'+ firstName
+      'familyName:' + familyName,
+      'familyNameKana:' + familyNameKana,
+      'firstNameKana:' + firstNameKana,
+      'parentsFirstNameKana:' + parentsFirstNameKana,
+      'gender:' + gender,
+      'relationship:' + relationship,
+      'pickerDate:' + pickerDate,
+      'phoneNumber:' + phoneNumber,
+      'address:' + address,
+      'zipcode:' + zipcode,
+      'building:' + building,
+      'message:' + message,
+      studentsRef.add({
+         studentData,
+         'entranced': firebase.firestore.FieldValue.serverTimestamp()
+      })
+   }),
+   deleteData: firestoreAction((context, id) => {
       return studentsRef.doc(id).delete()
    }),
    // fetchLevel: firestoreAction((context,id) => {
-   //    return studentsRef.doc(id).update({
-   //       level: level
-   //    })
-   // })
+      //    return studentsRef.doc(id).update({
+         //       level: level
+         //    })
+         // })
 }
